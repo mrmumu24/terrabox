@@ -21,4 +21,4 @@ jobs:
           terraform_version: 0.14.2
 
       - name: lint
-        run: terraform fmt -check
+        run: terraform fmt -check -recursive
