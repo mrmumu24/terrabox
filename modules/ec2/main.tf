@@ -2,7 +2,7 @@ resource "aws_instance" "ec2" {
   count = var.number_of_ec2
 
   ami             = var.ami_id
-  subnet_id       = var.subnet_ids[count.index]
+  subnet_id       = var.subnet_ids[count.index % length(var.subnet_ids)]
   private_ip      = var.private_ips[count.index]
   instance_type   = var.instance_type
   key_name        = var.key_name
