@@ -9,6 +9,6 @@ resource "aws_instance" "ec2" {
   security_groups = var.security_groups
 
   tags = {
-    Name = join("_", [var.vpc_name, var.instance_name])
+    Name = join("_", [var.vpc_name, var.instance_name, count_index])
   }
 }
