@@ -7,8 +7,8 @@ on:
   pull_request:
 
 jobs:
-  verify:
-    name: verify
+  lint:
+    name: lint
     runs-on: ubuntu-latest
     steps:
       - name: checkout
@@ -20,5 +20,5 @@ jobs:
         with:
           terraform_version: 0.14.2
 
-      - name: lint
+      - name: check style
         run: terraform fmt -check -recursive

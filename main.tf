@@ -44,5 +44,4 @@ module "ec2" {
   private_ips     = var.private_ips
   instance_type   = var.instance_type
   security_groups = [module.security_group.id]
-
 }
