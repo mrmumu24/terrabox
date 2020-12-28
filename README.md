@@ -1,7 +1,7 @@
 # terrabox
 ![lint](https://github.com/mrmumu24/terrabox/workflows/lint/badge.svg)
 
-Terraform files for deploying following architecture in AWS:
+Terraform scripts for deploying following architecture in AWS:
 ```
  AZ                          AZ                          AZ
  +----------------------+    +----------------------+    +----------------------+
@@ -37,16 +37,18 @@ cd terrabox
 3. change `key_name` variable
 4. create instances:
 ```
+terraform plan
 terraform apply
 ```
 5. login to instances (before this step you have to assign EIP to your instance/instances)
 ```
-ssh -i <PATH_TO_YOUR_PEM_KEY> ec2-user@<ELASTIC IP>
+ssh -i <PATH_TO_YOUR_PEM_KEY> -A centos@<ELASTIC IP>
 ```
 6. destroy instances
 ```
 terraform destroy
 ```
+7. remember to delete detached volumes manually
 
 ## Variables and outputs
 All variables and outputs are well documented in appropriate files

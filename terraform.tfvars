@@ -7,26 +7,19 @@ availability_zones = ["eu-west-2a", "eu-west-2b", "eu-west-2c"]
 subnets = ["10.0.11.0/24", "10.0.12.0/24", "10.0.13.0/24"]
 
 key_name      = "admin_key"
-ami_id        = "ami-06178cf087598769c"
+ami_id        = "ami-09e5afc68eed60ef4" # ami: centos7, login-user: centos
 instance_type = "t2.micro"
 private_ips = [
   "10.0.11.11", "10.0.12.11", "10.0.13.11",
   "10.0.11.12", "10.0.12.12", "10.0.13.12"
 ]
 
-sg_description = "allows: *: admin, *: vpc, *: outbound"
+sg_description = "allows: *"
 sg_rules = [
   {
     type        = "ingress"
     protocol    = "all"
-    cidr_blocks = ["0.0.0.0/32"] # change to admin ip
-    from_port   = 0
-    to_port     = 65535
-  },
-  {
-    type        = "ingress"
-    protocol    = "all"
-    cidr_blocks = ["10.0.0.0/16"]
+    cidr_blocks = ["0.0.0.0/0"]
     from_port   = 0
     to_port     = 65535
   },
@@ -97,6 +90,18 @@ nacl_rules = [
     cidr_block  = "0.0.0.0/0"
     from_port   = 443
     to_port     = 443
+    icmp_type   = null
+    icmp_code   = null
+  },
+  # tcp from world to dynamic ports
+  {
+    egress      = false
+    rule_number = 140
+    protocol    = "tcp"
+    rule_action = "allow"
+    cidr_block  = "0.0.0.0/0"
+    from_port   = 49152
+    to_port     = 65535
     icmp_type   = null
     icmp_code   = null
   },
