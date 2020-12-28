@@ -100,8 +100,8 @@ nacl_rules = [
     protocol    = "tcp"
     rule_action = "allow"
     cidr_block  = "0.0.0.0/0"
-    from_port   = 49152
-    to_port     = 65535
+    from_port   = 32768
+    to_port     = 60999
     icmp_type   = null
     icmp_code   = null
   },
